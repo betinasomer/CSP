@@ -26,17 +26,41 @@
 
     <script>
       let listaDeCompras = [];
-
+     
       function adicionarItem() {
-        
+          var item = document.getElementById("itemInput").value;
+          listaDeCompras.push(item);
+          console.log(listaDeCompras);
       }
+      function ordenarLista() {
+        listaDeCompras.sort();
+      }
+
 
       function removerItem() {
-        
+          var item_rem = document.getElementById("itemRemover").value
+          if(item_rem == ""){
+            alert("precisa de um item pelo menos")
+      } else {
+            for(var i = 0; i < listaDeCompras.length; i++) {
+                if (listaDeCompras[i] === item_rem) {
+                    listaDeCompras.splice(i, 1);
+                    break;
+                }
+            }
+            console.log(listaDeCompras);
+          }
       }
-
       function mostrarLista() {
-       
+          var resultado = document.getElementById("resultado");
+          resultado.innerHTML = "";
+          if(listaDeCompras.length != 0){
+            for (var i = 0; i < listaDeCompras.length; i++) {
+              resultado.innerHTML += listaDeCompras[i] + ", ";
+          }
+          }
+
+
       }
 
     </script>
