@@ -28,17 +28,42 @@
       let listaDeCompras = [];
 
       function adicionarItem() {
-        
+        const itemInput = document.getElementById("itemInput").value.trim();
+        if (itemInput) {
+          listaDeCompras.push(itemInput);
+          document.getElementById("itemInput").value = "";
+          alert(`Item "${itemInput}" adicionado à lista!`);
+        } else {
+          alert("Por favor, insira um item válido.");
+        }
       }
 
       function removerItem() {
-        
+        const itemRemover = document.getElementById("itemRemover").value.trim();
+        const index = listaDeCompras.indexOf(itemRemover);
+        if (index !== -1) {
+          listaDeCompras.splice(index, 1);
+          alert(`Item "${itemRemover}" removido da lista!`);
+        } else {
+          alert(`Item "${itemRemover}" não encontrado na lista.`);
+        }
+        document.getElementById("itemRemover").value = "";
       }
 
       function mostrarLista() {
-       
+        const resultado = document.getElementById("resultado");
+        if (listaDeCompras.length > 0) {
+          resultado.innerHTML = `<strong>Lista de Compras:</strong> ${listaDeCompras.join(", ")}`;
+        } else {
+          resultado.innerHTML = "A lista de compras está vazia.";
+        }
       }
 
+      function ordenarLista() {
+        listaDeCompras.sort();
+        alert("Lista ordenada com sucesso!");
+        mostrarLista(); // Atualiza a exibição da lista
+      }
     </script>
   </body>
 </html>
